@@ -2,11 +2,12 @@ import { Suspense, lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 // components
 import LoadingScreen from '../components/LoadingScreen';
+// layouts
+import MainLayout from '../layouts/MainLayout';
 
 // ----------------------------------------------------------------------
 
 const Loadable = (Component) => (props) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     return (
         <Suspense fallback={<LoadingScreen />}>
             <Component {...props} />
@@ -20,6 +21,7 @@ export default function Router() {
     return useRoutes([
         {
             path: '*',
+            element: <MainLayout />,
             children: [
                 { path: '404', element: <NotFound /> },
                 { path: '*', element: <Navigate to="/404" replace /> }
@@ -27,6 +29,7 @@ export default function Router() {
         },
         {
             path: '/',
+            element: <MainLayout />,
             children: [
                 { path: '', element: <MainPage /> },
             ]
