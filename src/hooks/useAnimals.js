@@ -1,10 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import animalsService from "../services/animals";
 
-const shuffle = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-};
-
 const useAnimals = () => {
     const { getAnimals: getAnimalsAPI } = animalsService();
 
@@ -27,7 +23,7 @@ const useAnimals = () => {
                     ])
                 });
             }
-            return shuffle(newData);
+            return newData;
         }
     });
 
