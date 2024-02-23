@@ -1,4 +1,4 @@
-import http from "../utils/httpClient";
+import http from "../../utils/httpClient";
 
 const animalsService = () => {
     const getAnimals = () => {
