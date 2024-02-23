@@ -1,5 +1,6 @@
-import useCache from '../hooks/useCache';
-import MovesCount from './MovesCount';
+import React from 'react';
+import useCache from '../../hooks/useCache/useCache';
+import MovesCount from '../MovesCount';
 
 const Instructions = ({ hits, fails, restartGame }) => {
     const { userName } = useCache();
