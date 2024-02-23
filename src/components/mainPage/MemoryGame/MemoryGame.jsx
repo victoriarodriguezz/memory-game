@@ -110,7 +110,7 @@ const MemoryGame = () => {
                                         card === secondMove || card.matched}>
                                         <BehindCard onCardClick={() => handleMoves(card)} />
 
-                                        <div className="w-full h-28 sm:h-44">
+                                        <div className="w-full h-28 sm:h-44" aria-label="Card">
                                             <img className="object-cover w-full h-full rounded-md" src={card.image.url} alt={card.image.title} />
                                         </div>
                                     </ReactCardFlip>
