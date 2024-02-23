@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Before you begin, ensure you have the following versions installed:
+Before you begin, make sure you have the following versions installed:
 
 - [Node.js](https://nodejs.org/) (v20.9.0)
 - [npm](https://www.npmjs.com/) (v10.1.0)
@@ -105,9 +105,10 @@ To ensure the stability of the project, you can run tests using Jest. Follow the
 
 ## Documentation
 
+- [React](https://react.dev/learn)
 - [Node](https://nodejs.org/es/docs/)
 - [NPM](https://docs.npmjs.com/)
 - [Axios](https://axios-http.com/es/docs/intro)
 - [React-query](https://tanstack.com/query/v5/docs/framework/react/overview)
-- [tailwindcss](https://tailwindcss.com/)
+- [Tailwindcss](https://tailwindcss.com/)
 - [Jest](https://jest-archive-august-2023.netlify.app/docs/28.x/getting-started/)
