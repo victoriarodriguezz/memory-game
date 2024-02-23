@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import animalsService from "../services/animals";
+import animalsService from "../../services/animals";
 
 const useAnimals = () => {
     const { getAnimals: getAnimalsAPI } = animalsService();
@@ -24,7 +24,7 @@ const useAnimals = () => {
                 });
             }
             return newData;
-        }
+        },
     });
 
     return { animals: data, isError, isSuccess, isLoading };
