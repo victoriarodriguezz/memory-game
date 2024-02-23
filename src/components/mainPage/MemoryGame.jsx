@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 // hooks
 import useAnimals from '../../hooks/useAnimals';
@@ -18,16 +18,16 @@ const MemoryGame = () => {
     const [failCount, setFailCount] = useState(0);
     const [areCardsBlocked, setAreCardsBlocked] = useState(false);
 
-    const setAnimalCards = () => {
+    const setAnimalCards = useCallback(() => {
         let shuffleAnimals = shuffle(animals)
         setCards(shuffleAnimals);
-    }
+    }, [animals, setCards])
 
     useEffect(() => {
         if (isSuccess && animals && !isLoading && !cards) {
-            setAnimalCards()
+            setAnimalCards();
         };
-    }, [animals, cards, isLoading, isSuccess, setCards]);
+    }, [animals, cards, isLoading, isSuccess, setAnimalCards]);
 
     useEffect(() => {
         if (firstMove && secondMove) {
@@ -78,11 +78,9 @@ const MemoryGame = () => {
 
     return (
         <div className="mx-auto max-w-6xl">
-
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
-                <Instructions hits={hitsCount} fails={failCount} restartGame={restartGame} />
-
-                {isSuccess &&
+            {isSuccess &&
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
+                    <Instructions hits={hitsCount} fails={failCount} restartGame={restartGame} />
                     <div className="col-span-1 sm:col-span-2 grid gap-3 grid-cols-4 sm:grid-cols-5">
                         {cards && cards.map((card) => {
                             return (
@@ -99,10 +97,10 @@ const MemoryGame = () => {
                             );
                         })}
                     </div>
-                }
+                </div>
+            }
 
-                {isError && <ErrorMessage />}
-            </div>
+            {isError && <ErrorMessage />}
         </div>
     );
 };
