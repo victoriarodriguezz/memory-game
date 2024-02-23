@@ -9,7 +9,6 @@ const config = {
     "<rootDir>/src/setupTests.js"
   ],
   testEnvironment: "jsdom",
-  // An array of file extensions your modules use
   moduleFileExtensions: [
     "js",
     "mjs",
@@ -20,8 +19,6 @@ const config = {
     "json",
     "node"
   ],
-
-  // A map from regular expressions to paths to transformers
   transform: {
     "^.+\\.jsx?$": "babel-jest"
   },

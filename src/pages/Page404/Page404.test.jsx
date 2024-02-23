@@ -5,6 +5,10 @@ import Page404 from './Page404';
 jest.mock('react-router-dom')
 
 describe('Page404', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     test('should render component', () => {
         render(<Page404 />);
         const pageNotFoundText = screen.getByText('Sorry, page not found!');
