@@ -19,6 +19,9 @@ const config = {
     "json",
     "node"
   ],
+  moduleNameMapper: {
+    "^.+\\.(css|scss)$": "babel-jest"
+  },
   transform: {
     "^.+\\.jsx?$": "babel-jest"
   },
