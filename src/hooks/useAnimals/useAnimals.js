@@ -7,8 +7,8 @@ const useAnimals = () => {
     const { data, isError, isSuccess, isLoading } = useQuery({
         queryKey: ["animals"],
         queryFn: getAnimalsAPI,
-        select: (data) => {
-            const { entries } = data.data;
+        select: (response) => {
+            const { entries } = response.data;
             const newData = [];
             if (entries) {
                 entries.forEach(element => {
