@@ -8,6 +8,8 @@ import shuffle from '../../utils/shuffle';
 import BehindCard from '../BehindCard';
 import ErrorMessage from '../ErrorMessage';
 import Instructions from '../Instructions';
+import FinishedGame from '../FinishedGame';
+import LoadingScreen from '../LoadingScreen';
 
 const MemoryGame = () => {
     const { animals, isSuccess, isError, isLoading } = useAnimals();
@@ -16,6 +18,7 @@ const MemoryGame = () => {
     const [secondMove, setSecondMove] = useState(null);
     const [hitsCount, setHitsCount] = useState(0);
     const [failCount, setFailCount] = useState(0);
+    const [showCongratulation, setShowContratulation] = useState(false);
     const [areCardsBlocked, setAreCardsBlocked] = useState(false);
 
     const setAnimalCards = useCallback(() => {
@@ -53,6 +56,12 @@ const MemoryGame = () => {
         }
     }, [firstMove, secondMove]);
 
+    useEffect(() => {
+        if (hitsCount === 10 && !showCongratulation) {
+            setShowContratulation(true);
+        }
+    }, [hitsCount, showCongratulation])
+
     const turnFinished = () => {
         setFirstMove(null);
         setSecondMove(null);
@@ -76,8 +85,23 @@ const MemoryGame = () => {
         setAnimalCards();
     }
 
+    const handleCloseCongratsDialog = () => {
+        setShowContratulation(false);
+    }
+
+    const handleStartNewGame = () => {
+        restartGame();
+        handleCloseCongratsDialog();
+    }
+
     return (
         <div className="mx-auto max-w-6xl">
+            <FinishedGame
+                show={showCongratulation}
+                onClose={handleCloseCongratsDialog}
+                onRestart={handleStartNewGame}
+            />
+
             {isSuccess &&
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
                     <Instructions hits={hitsCount} fails={failCount} restartGame={restartGame} />
@@ -99,6 +123,8 @@ const MemoryGame = () => {
                     </div>
                 </div>
             }
+
+            {isLoading && <LoadingScreen />}
 
             {isError && <ErrorMessage />}
         </div>
