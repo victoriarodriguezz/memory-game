@@ -18,7 +18,7 @@ const MainLayout = () => {
                 aria-hidden="true"
                 className="main-layout__blur-container top-1/4"
             >
-                <div className="main-layout__blur-container__blur left-[calc(50%+3rem)]" />
+                <div className="main-layout__blur-container__blur right-0" />
             </div>
         </div>
     );

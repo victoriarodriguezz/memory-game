@@ -2,7 +2,7 @@
     background-color: #fff;
     position: relative;
     isolation: isolate;
-    padding: 2rem 1rem 0 1rem;
+    padding: 2rem 1rem 2rem 1rem;
 
     &__blur-container {
         position: absolute;
@@ -14,7 +14,7 @@
         filter: blur(64px);
 
         &__blur {
-            position: relative;
+            position: absolute;
             opacity: 0.3;
             width: 70%;
             aspect-ratio: 1155/678;
