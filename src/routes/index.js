@@ -5,8 +5,6 @@ import LoadingScreen from '../components/LoadingScreen';
 // layouts
 import MainLayout from '../layouts/MainLayout';
 
-// ----------------------------------------------------------------------
-
 const Loadable = (Component) => (props) => {
     return (
         <Suspense fallback={<LoadingScreen />}>
@@ -14,8 +12,6 @@ const Loadable = (Component) => (props) => {
         </Suspense>
     );
 };
-
-// ----------------------------------------------------------------------
 
 export default function Router() {
     return useRoutes([
