@@ -1,7 +1,8 @@
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_MODYO_API_URL;
 const config = {
-  baseURL: "https://fed-team.modyo.cloud/",
+  baseURL: apiUrl,
   timeout: 60000,
 };
 
