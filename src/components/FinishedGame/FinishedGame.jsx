@@ -1,14 +1,15 @@
-import { Fragment, useRef } from 'react';
+import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import useCache from '../../hooks/useCache/useCache';
+import Button from '../Button';
+import MovesCount from '../MovesCount';
 
-const FinishedGame = ({ onClose, onRestart, show }) => {
-    const cancelButtonRef = useRef(null);
+const FinishedGame = ({ onRestart, show, hits, fails }) => {
     const { userName } = useCache();
 
     return (
         <Transition.Root show={show} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={onClose}>
+            <Dialog as="div" className="relative z-10" onClose={onRestart}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -39,30 +40,21 @@ const FinishedGame = ({ onClose, onRestart, show }) => {
                                             <Dialog.Title as="h3" className="text-3xl font-bold text-gray-800">
                                                 {`¡Contratulations ${userName}!`}
                                             </Dialog.Title>
-                                            <div className="mt-2">
-                                                <p className="text-sm text-gray-500">
-                                                    Well done! Do you want to play again?
-                                                </p>
-                                            </div>
+                                            <p className="text-sm text-gray-500 mt-2 mb-3">
+                                                Your score:
+                                            </p>
+
+                                            <MovesCount hits={hits} fails={fails} />
+                                            <p className="text-sm text-gray-500 mt-1">
+                                               Do you want to play again?
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                    <button
-                                        type="button"
-                                        className="inline-flex w-full justify-center rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-600 sm:ml-3 sm:w-auto"
-                                        onClick={onRestart}
-                                    >
+                                    <Button type="button" onClick={onRestart}>
                                         New game
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                        onClick={onClose}
-                                        ref={cancelButtonRef}
-                                    >
-                                        Close
-                                    </button>
+                                    </Button>
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
