@@ -1,8 +1,9 @@
 import React from 'react';
 import useCache from '../../hooks/useCache/useCache';
 import MovesCount from '../MovesCount';
+import Button from '../Button';
 
-const Instructions = ({ hits, fails, restartGame }) => {
+const Instructions = ({ hits, fails, restartGame, areCardsBlocked }) => {
     const { userName } = useCache();
 
     return (
@@ -17,12 +18,12 @@ const Instructions = ({ hits, fails, restartGame }) => {
             </h2>
             <MovesCount hits={hits} fails={fails} />
 
-            <button
+            <Button
                 onClick={restartGame}
-                className="flex-none rounded-md bg-emerald-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
+                isDisabled={areCardsBlocked}
             >
                 Restart game
-            </button>
+            </Button>
         </div>
     );
 };
