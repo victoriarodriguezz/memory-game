@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 // hooks
-import useAnimals from '../../hooks/useAnimals';
+import useAnimals from '../../../hooks/useAnimals';
 //utils
-import shuffle from '../../utils/shuffle';
+import shuffle from '../../../utils/shuffle';
 // components
-import BehindCard from '../BehindCard';
-import ErrorMessage from '../ErrorMessage';
-import Instructions from '../Instructions';
-import FinishedGame from '../FinishedGame';
-import LoadingScreen from '../LoadingScreen';
+import BehindCard from '../../BehindCard';
+import ErrorMessage from '../../ErrorMessage';
+import Instructions from '../../Instructions';
+import FinishedGame from '../../FinishedGame';
+import LoadingScreen from '../../LoadingScreen';
 
 const MemoryGame = () => {
     const { animals, isSuccess, isError, isLoading } = useAnimals();
@@ -29,7 +29,7 @@ const MemoryGame = () => {
     useEffect(() => {
         if (isSuccess && animals && !isLoading && !cards) {
             setAnimalCards();
-        };
+        }
     }, [animals, cards, isLoading, isSuccess, setAnimalCards]);
 
     useEffect(() => {
@@ -85,26 +85,23 @@ const MemoryGame = () => {
         setAnimalCards();
     }
 
-    const handleCloseCongratsDialog = () => {
-        setShowContratulation(false);
-    }
-
     const handleStartNewGame = () => {
         restartGame();
-        handleCloseCongratsDialog();
+        setShowContratulation(false);
     }
 
     return (
         <div className="mx-auto max-w-6xl">
             <FinishedGame
                 show={showCongratulation}
-                onClose={handleCloseCongratsDialog}
                 onRestart={handleStartNewGame}
+                hits={hitsCount}
+                fails={failCount}
             />
 
             {isSuccess &&
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
-                    <Instructions hits={hitsCount} fails={failCount} restartGame={restartGame} />
+                    <Instructions hits={hitsCount} fails={failCount} restartGame={restartGame} areCardsBlocked={areCardsBlocked} />
                     <div className="col-span-1 sm:col-span-2 grid gap-3 grid-cols-4 sm:grid-cols-5">
                         {cards && cards.map((card) => {
                             return (
